@@ -28,9 +28,6 @@
     "release": "node scripts/release.js",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s"
   },
-  "gitHooks": {
-    "commit-msg": "node scripts/verify-commit.js"
-  },
   "peerDependencies": {
     "vue": ">=2.0.0"
   },
