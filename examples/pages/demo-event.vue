@@ -27,7 +27,7 @@ const code = `
 </template>
 
 <script>
-    import { ModelObj } from 'vue-3d-model'
+    import { ModelObj } from 'vue-3d-model-extend'
 
     export default {
         data () {
@@ -40,18 +40,24 @@ const code = `
 
                 console.log( event );   // event: { distance, face, faceIndex, point, index, uv, object }
 
-                if ( !event ) {
+                const { camera, intersected } = { ...event };
 
-                    if ( this.intersected ) {
-                        this.intersected.material.color.setStyle( '#fff' );
-                    }
+                if (!intersected) {
+                  if (this.intersected) {
+                    this.intersected.material.color.setStyle('#fff');
+                  }
 
-                    this.intersected = null;
-                    return;
+                  this.intersected = null;
+                  return;
                 }
 
-                this.intersected = event.object;
-                this.intersected.material.color.setStyle( '#13ce66' );
+                if (intersected) {
+                  this.intersected = intersected.object;
+                  this.intersected.material.color.setStyle('#13ce66');
+                }
+                if (camera) {
+                  console.log(event.camera);
+                }
             }
         },
         components: {
@@ -80,20 +86,25 @@ const htmlCode = `
             methods: {
                 onMouseMove ( event ) {
 
-                    console.log( event );   // event: { distance, face, faceIndex, point, index, uv, object }
+                    console.log(event);
+                    const { camera, intersected } = { ...event };
 
-                    if ( !event ) {
+                    if (!intersected) {
+                      if (this.intersected) {
+                        this.intersected.material.color.setStyle('#fff');
+                      }
 
-                        if ( this.intersected ) {
-                            this.intersected.material.color.setStyle( '#fff' );
-                        }
-
-                        this.intersected = null;
-                        return;
+                      this.intersected = null;
+                      return;
                     }
 
-                    this.intersected = event.object;
-                    this.intersected.material.color.setStyle( '#13ce66' );
+                    if (intersected) {
+                      this.intersected = intersected.object;
+                      this.intersected.material.color.setStyle('#13ce66');
+                    }
+                    if (camera) {
+                      console.log(event.camera);
+                    }
                 }
             }
         })
@@ -117,8 +128,9 @@ export default {
     },
     onMouseMove(event) {
       console.log(event);
+      const { camera, intersected } = { ...event };
 
-      if (!event) {
+      if (!intersected) {
         if (this.intersected) {
           this.intersected.material.color.setStyle('#fff');
         }
@@ -127,8 +139,13 @@ export default {
         return;
       }
 
-      this.intersected = event.object;
-      this.intersected.material.color.setStyle('#13ce66');
+      if (intersected) {
+        this.intersected = intersected.object;
+        this.intersected.material.color.setStyle('#13ce66');
+      }
+      if (camera) {
+        console.log(event.camera);
+      }
     },
   },
   components: {

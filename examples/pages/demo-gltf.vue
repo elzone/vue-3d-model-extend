@@ -22,7 +22,7 @@ const code = `
 </template>
 
 <script>
-    import { ModelGltf } from 'vue-3d-model'
+    import { ModelGltf } from 'vue-3d-model-extend'
 
     export default {
         components: {

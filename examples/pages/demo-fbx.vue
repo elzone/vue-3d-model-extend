@@ -18,7 +18,7 @@ const code = `
 </template>
 
 <script>
-    import { modelFbx } from 'vue-3d-model'
+    import { modelFbx } from 'vue-3d-model-extend'
 
     export default {
         components: {

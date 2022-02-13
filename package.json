@@ -1,6 +1,6 @@
 {
-  "name": "vue-3d-model-extend",
-  "version": "0.0.4",
+  "name": "@elzone/vue-3d-model-extend",
+  "version": "0.0.5",
   "description": "3D models viewer with vue.js",
   "keywords": [
     "vue",

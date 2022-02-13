@@ -32,7 +32,7 @@ import hljs from 'highlight.js';
 
 const codeHandler = (code) => {
   const scripts = `<script src="vue.js"><\/script>
-    <script src="vue-3d-model.min.js"><\/script>`;
+    <script src="vue-3d-model-extend.min.js"><\/script>`;
 
   return code.replace(/#scripts#/gi, scripts);
 };

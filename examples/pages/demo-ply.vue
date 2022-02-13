@@ -22,7 +22,7 @@ const code = `
 </template>
 
 <script>
-    import { ModelPly } from 'vue-3d-model'
+    import { ModelPly } from 'vue-3d-model-extend'
 
     export default {
         components: {

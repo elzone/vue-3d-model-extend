@@ -1,22 +1,22 @@
 # vue-3d-model-extend
 
-<p align="center">
-    <a src="https://github.com/hujiulong/vue-3d-model" alt="github link">a fork from vue-3d-model</a>
-</p>
+
+# <a src="https://github.com/hujiulong/vue-3d-model" alt="github link">a fork from vue-3d-model</a>
+
 
 vue.js 3D model viewer component, based on threejs, inspired by [model-tag](https://github.com/mrdoob/model-tag)
 
 ## Install
 using npm
 ```
-npm install vue-3d-model --save
+npm install @elzone/vue-3d-model-extend --save
 ```
 Or using script tag for global use
 ```html
-<script src="https://unpkg.com/vue-3d-model/dist/vue-3d-model.umd.js"></script>
+<script src="https://unpkg.com/@elzone/vue-3d-model-extend/dist/vue-3d-model-extend.umd.js"></script>
 ```
 
-Or Download <a href="https://unpkg.com/vue-3d-model/dist/vue-3d-model.umd.js">vue-3d-model.js</a> and include it in your html
+Or Download <a href="https://unpkg.com/@elzone/vue-3d-model-extend/dist/vue-3d-model-extend.umd.js">@elzone/vue-3d-model-extend.js</a> and include it in your html
 
 ## Usage
 
@@ -25,7 +25,7 @@ Or Download <a href="https://unpkg.com/vue-3d-model/dist/vue-3d-model.umd.js">vu
   <model-obj src="example/models/obj/LeePerrySmith.obj"></model-obj>
 </template>
 <script>
-import { ModelObj } from 'vue-3d-model';
+import { ModelObj } from 'vue-3d-model-extend';
 export default {
   components: { ModelObj }
 }
@@ -42,7 +42,7 @@ Or
     <model-obj src="example/models/obj/LeePerrySmith.obj"></model-obj>
   </div>
 <script src="vue.js"></script>
-<script src="vue-3d-model.js"></script>
+<script src="vue-3d-model-extend.umd.js"></script>
 <script>
   new Vue({ el: '#app' });
 </script>
@@ -74,10 +74,11 @@ Or
 ### events
 
 | event         |
-| ------------- |
+|---------------|
 | on-mousedown  |
 | on-mousemove  |
 | on-mouseup    |
+| on-mousewheel |
 | on-click      |
 | on-load       |
 | on-progress   |

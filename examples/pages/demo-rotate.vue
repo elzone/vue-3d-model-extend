@@ -25,7 +25,7 @@ const code = `
 </template>
 
 <script>
-    import { ModelCollada } from 'vue-3d-model'
+    import { ModelCollada } from 'vue-3d-model-extend'
 
     export default {
         data: {

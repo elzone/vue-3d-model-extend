@@ -284,31 +284,31 @@ export default {
       if (!this.hasListener['on-mousedown']) return;
 
       const intersected = this.pick(event.clientX, event.clientY);
-      this.$emit('on-mousedown', intersected);
+      this.$emit('on-mousedown', { camera: this.camera, intersected });
     },
     onMouseMove(event) {
       if (!this.hasListener['on-mousemove']) return;
 
       const intersected = this.pick(event.clientX, event.clientY);
-      this.$emit('on-mousemove', intersected);
+      this.$emit('on-mousemove', { camera: this.camera, intersected });
     },
     onMouseUp(event) {
       if (!this.hasListener['on-mouseup']) return;
 
       const intersected = this.pick(event.clientX, event.clientY);
-      this.$emit('on-mouseup', intersected);
+      this.$emit('on-mouseup', { camera: this.camera, intersected });
     },
     onMouseWheel(event) {
       if (!this.hasListener['on-mousewheel']) return;
 
       const intersected = this.pick(event.clientX, event.clientY);
-      this.$emit('on-mousewheel', intersected);
+      this.$emit('on-mousewheel', { camera: this.camera, intersected });
     },
     onClick(event) {
       if (!this.hasListener['on-click']) return;
 
       const intersected = this.pick(event.clientX, event.clientY);
-      this.$emit('on-click', intersected);
+      this.$emit('on-click', { camera: this.camera, intersected });
     },
     pick(x, y) {
       if (!this.object) return null;

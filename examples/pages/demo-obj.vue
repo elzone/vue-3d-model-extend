@@ -17,7 +17,7 @@ const code = `
 </template>
 
 <script>
-    import { ModelObj } from 'vue-3d-model'
+    import { ModelObj } from 'vue-3d-model-extend'
 
     export default {
         components: {
