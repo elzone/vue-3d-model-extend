@@ -78,6 +78,17 @@ export default {
         return [];
       },
     },
+    cameraQuaternion: {
+      type: Object,
+      default() {
+        return {
+          x: 0,
+          y: 0,
+          z: 0,
+          w: 0,
+        };
+      },
+    },
     cameraPosition: {
       type: Object,
       default() {
@@ -146,7 +157,7 @@ export default {
       const events = this._events;
       const result = {};
 
-      ['on-mousemove', 'on-mouseup', 'on-mousedown', 'on-mousewheel', 'on-click'].forEach((name) => {
+      ['on-mousemove', 'on-mouseup', 'on-mousedown', 'on-wheel', 'on-click'].forEach((name) => {
         result[name] = !!events[name] && events[name].length > 0;
       });
 
@@ -180,7 +191,7 @@ export default {
     this.$el.addEventListener('mousedown', this.onMouseDown, false);
     this.$el.addEventListener('mousemove', this.onMouseMove, false);
     this.$el.addEventListener('mouseup', this.onMouseUp, false);
-    this.$el.addEventListener('mousewheel', this.onMouseWheel, false);
+    this.$el.addEventListener('wheel', this.onWheel, false);
     this.$el.addEventListener('click', this.onClick, false);
 
     window.addEventListener('resize', this.onResize, false);
@@ -199,7 +210,7 @@ export default {
     this.$el.removeEventListener('mousedown', this.onMouseDown, false);
     this.$el.removeEventListener('mousemove', this.onMouseMove, false);
     this.$el.removeEventListener('mouseup', this.onMouseUp, false);
-    this.$el.removeEventListener('mousewheel', this.onMouseWheel, false);
+    this.$el.removeEventListener('wheel', this.onWheel, false);
     this.$el.removeEventListener('click', this.onClick, false);
 
     window.removeEventListener('resize', this.onResize, false);
@@ -207,6 +218,13 @@ export default {
   watch: {
     src() {
       this.load();
+    },
+    cameraQuaternion: {
+      deep: true,
+      handler(val) {
+        if (!this.camera) return;
+        this.camera.quaternion.set(val);
+      },
     },
     cameraRotation: {
       deep: true,
@@ -270,6 +288,18 @@ export default {
     },
   },
   methods: {
+    transpose(matrix) {
+      const arr = [];
+      // eslint-disable-next-line no-plusplus
+      for (let i = 0; i < matrix.length; i++) {
+        arr.push([]);
+        // eslint-disable-next-line no-plusplus
+        for (let j = 0; j < matrix.length; j++) {
+          arr[i].push(matrix[j][i]);
+        }
+      }
+      return arr;
+    },
     onResize() {
       if (this.width === undefined || this.height === undefined) {
         this.$nextTick(() => {
@@ -298,11 +328,11 @@ export default {
       const intersected = this.pick(event.clientX, event.clientY);
       this.$emit('on-mouseup', { camera: this.camera, intersected });
     },
-    onMouseWheel(event) {
-      if (!this.hasListener['on-mousewheel']) return;
+    onWheel(event) {
+      if (!this.hasListener['on-wheel']) return;
 
       const intersected = this.pick(event.clientX, event.clientY);
-      this.$emit('on-mousewheel', { camera: this.camera, intersected });
+      this.$emit('on-wheel', { camera: this.camera, intersected });
     },
     onClick(event) {
       if (!this.hasListener['on-click']) return;

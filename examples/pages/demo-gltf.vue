@@ -4,6 +4,10 @@
       <model-gltf
         :backgroundAlpha="0"
         @on-load="onLoad"
+        @on-wheel="onWheel"
+        :camera-quaternion="cameraQuaternion"
+        :camera-position="cameraPosition"
+        :camera-rotation="cameraRotation"
         src="static/models/gltf/Duck/glTF/Duck.gltf"
       ></model-gltf>
       <div class="example-loading" v-show="loading"></div>
@@ -57,11 +61,46 @@ export default {
       code,
       htmlCode,
       loading: true,
+      cameraQuaternion: {
+        x: 0,
+        y: 0,
+        z: 0,
+        w: 0,
+      },
+      cameraRotation: {
+        x: 0,
+        y: 0,
+        z: 0,
+      },
+      cameraPosition: {
+        x: 0,
+        y: 0,
+        z: 0,
+      },
     };
   },
   methods: {
     onLoad() {
       this.loading = false;
+      this.cameraQuaternion = {
+        x: 0.09,
+        y: 0.88,
+        z: 0.21,
+        w: -0.38,
+      };
+      this.cameraRotation = {
+        x: -2.47,
+        y: -0.72,
+        z: -2.65,
+      };
+      this.cameraPosition = {
+        x: -1041,
+        y: 730,
+        z: -925,
+      };
+    },
+    onWheel(event) {
+      console.log(event);
     },
   },
   components: {
